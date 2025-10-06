@@ -58,6 +58,7 @@
 
         .app-container {
             display: flex;
+            flex-direction: column;
             height: 100vh;
             background: var(--app-bg);
             border-radius: 20px;
@@ -67,7 +68,38 @@
             transition: all 0.3s ease;
         }
 
-        /* Sidebar */
+        /* Top Menu Bar */
+        .top-menu {
+            background: var(--sidebar-bg);
+            border-bottom: 1px solid var(--sidebar-border);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .menu-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .menu-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Content Area */
+        .content-wrapper {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* Sidebar - Now for menu items */
         .sidebar {
             width: 280px;
             background: var(--sidebar-bg);
@@ -75,23 +107,20 @@
             display: flex;
             flex-direction: column;
             padding: 20px 0;
-            height: 100vh;
+            overflow-y: auto;
             transition: all 0.3s ease;
         }
 
-        .sidebar-header {
-            padding: 0 20px 20px;
-            border-bottom: 1px solid var(--sidebar-border);
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+            background: var(--app-bg);
         }
 
-        .header-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .sidebar-title {
+        /* Top Menu Styles */
+        .menu-title {
             font-size: 24px;
             font-weight: 700;
             color: var(--text-primary);
@@ -117,18 +146,45 @@
             transform: translateY(-1px);
         }
 
-        .search-box {
-            position: relative;
-            margin-bottom: 20px;
+        /* Sidebar Header - Now just for search */
+        .sidebar-header {
+            padding: 0 20px 20px;
+            border-bottom: 1px solid var(--sidebar-border);
         }
 
-        .search-input {
+        .search-box {
+            position: relative;
+            margin-left: 20px;
+        }
+
+        .top-menu .search-box {
+            margin-bottom: 0;
+            margin-left: 30px;
+        }
+
+        .top-menu .search-input {
+            width: 300px;
+            padding: 8px 12px 8px 35px;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            font-size: 14px;
+            background: var(--input-bg);
+            color: var(--text-primary);
+        }
+
+        .sidebar .search-box {
+            margin-bottom: 20px;
+            margin-left: 0;
+        }
+
+        .sidebar .search-input {
             width: 100%;
             padding: 10px 15px 10px 50px;
-            border: 1px solid #e9ecef;
+            border: 1px solid var(--border-color);
             border-radius: 8px;
             font-size: 14px;
-            background: white;
+            background: var(--input-bg);
+            color: var(--text-primary);
         }
 
         .search-icon {
@@ -139,6 +195,10 @@
             color: #6c757d;
             font-size: 12px;
             pointer-events: none;
+        }
+
+        .top-menu .search-icon {
+            left: 12px;
         }
 
         .sidebar-nav {
@@ -808,9 +868,33 @@
             .app-container {
                 margin: 10px;
                 border-radius: 15px;
-                flex-direction: column;
                 height: auto;
                 min-height: calc(100vh - 20px);
+            }
+
+            .top-menu {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+
+            .menu-left,
+            .menu-right {
+                justify-content: center;
+                width: 100%;
+            }
+
+            .menu-left {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .top-menu .search-input {
+                width: 250px;
+            }
+
+            .content-wrapper {
+                flex-direction: column;
             }
 
             .sidebar {
@@ -820,25 +904,6 @@
                 padding: 15px 0;
                 border-right: none;
                 border-top: 1px solid var(--sidebar-border);
-            }
-
-            .sidebar-header {
-                padding: 0 15px 15px;
-            }
-            
-            .header-top {
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-            }
-            
-            .sidebar-title {
-                font-size: 20px;
-            }
-            
-            .theme-toggle {
-                padding: 8px 12px;
-                font-size: 12px;
             }
 
             .main-content {
@@ -911,9 +976,45 @@
             .app-container {
                 margin: 0;
                 border-radius: 0;
-                flex-direction: column;
                 min-height: 100vh;
                 height: auto;
+            }
+
+            .top-menu {
+                padding: 10px 15px;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .menu-left {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .menu-title {
+                font-size: 20px;
+            }
+
+            .menu-right {
+                justify-content: center;
+            }
+
+            .top-menu .search-input {
+                width: 100%;
+                max-width: 280px;
+            }
+
+            .theme-toggle {
+                padding: 8px 12px;
+                font-size: 12px;
+                align-self: center;
+                min-width: 120px;
+                justify-content: center;
+            }
+
+            .content-wrapper {
+                flex-direction: column;
             }
 
             .sidebar {
@@ -925,42 +1026,10 @@
                 border-top: 1px solid var(--sidebar-border);
             }
 
-            .sidebar-header {
-                padding: 0 10px 10px;
-            }
-            
-            .header-top {
-                flex-direction: column;
-                gap: 10px;
-                align-items: stretch;
-            }
-            
-            .sidebar-title {
-                font-size: 18px;
-                text-align: center;
-            }
-            
-            .theme-toggle {
-                padding: 10px;
-                font-size: 14px;
-                align-self: center;
-                min-width: 120px;
-                justify-content: center;
-            }
-            
-            .search-box {
-                margin-top: 10px;
-            }
-            
-            .search-input {
-                padding: 12px 15px 12px 45px;
-                font-size: 16px;
-            }
-
             .main-content {
                 order: 1;
                 padding: 15px 10px;
-                min-height: 70vh;
+                min-height: 50vh;
             }
 
             .page-header {
@@ -1129,23 +1198,61 @@
     </div>
 
     <div class="app-container">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="sidebar-header">
-                <div class="header-top">
-                    <h1 class="sidebar-title">Menu</h1>
-                    <button class="theme-toggle" onclick="toggleTheme()">
-                        <span id="theme-icon">🌙</span>
-                        <span id="theme-text">Dark</span>
-                    </button>
-                </div>
-                
+        <!-- Top Menu Bar -->
+        <div class="top-menu">
+            <div class="menu-left">
+                <h1 class="menu-title">Todo App</h1>
                 <!-- Search -->
                 <form method="get" class="search-box">
                     <input type="text" name="search" class="search-input" 
-                           placeholder="Search" value="{{ search_query }}">
+                           placeholder="Search tasks..." value="{{ search_query }}">
+                    <span class="search-icon">🔍</span>
                 </form>
             </div>
+            <div class="menu-right">
+                <button class="theme-toggle" onclick="toggleTheme()">
+                    <span id="theme-icon">🌙</span>
+                    <span id="theme-text">Dark</span>
+                </button>
+                <!-- User Profile -->
+                <div class="user-info" onclick="toggleProfileDropdown()">
+                    <div class="user-avatar">{{ user.first_name.0|default:user.username.0 }}</div>
+                    <div class="user-details">
+                        <div style="font-weight: 500;">{{ user.first_name|default:user.username }}</div>
+                        <div style="font-size: 12px; color: #6c757d;">{{ user.email }}</div>
+                    </div>
+                    <span class="dropdown-arrow">▼</span>
+                    
+                    <div class="profile-dropdown" id="profileDropdown">
+                        <div class="dropdown-user-info">
+                            <div class="dropdown-user-avatar">{{ user.first_name.0|default:user.username.0 }}</div>
+                            <div class="dropdown-user-name">{{ user.first_name|default:user.username }}</div>
+                            <div class="dropdown-user-email">{{ user.email }}</div>
+                        </div>
+                        <a href="{% url 'edit_profile' %}" class="dropdown-item">
+                            <span class="dropdown-item-icon">👤</span>
+                            <span>Edit Profile</span>
+                        </a>
+                        <a href="{% url 'change_password' %}" class="dropdown-item">
+                            <span class="dropdown-item-icon">⚙️</span>
+                            <span>Change Password</span>
+                        </a>
+                        <a href="{% url 'logout' %}" class="dropdown-item">
+                            <span class="dropdown-item-icon">🚪</span>
+                            <span>Sign Out</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Content Wrapper -->
+        <div class="content-wrapper">
+            <!-- Menu Sidebar -->
+            <div class="sidebar">
+                <div class="sidebar-header">
+                    <h3 style="color: var(--text-secondary); font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px;">Menu</h3>
+                </div>
 
             <div class="sidebar-nav">
                 <!-- Tasks Section -->
@@ -1211,37 +1318,6 @@
                         </div>
                         <span class="nav-item-count">{{ home_count }}</span>
                     </a>
-                </div>
-            </div>
-
-            <div class="sidebar-footer">
-                <div class="user-info" onclick="toggleProfileDropdown()">
-                    <div class="user-avatar">{{ user.first_name.0|default:user.username.0 }}</div>
-                    <div class="user-details">
-                        <div style="font-weight: 500;">{{ user.first_name|default:user.username }}</div>
-                        <div style="font-size: 12px; color: #6c757d;">{{ user.email }}</div>
-                    </div>
-                    <span class="dropdown-arrow">▼</span>
-                    
-                    <div class="profile-dropdown" id="profileDropdown">
-                        <div class="dropdown-user-info">
-                            <div class="dropdown-user-avatar">{{ user.first_name.0|default:user.username.0 }}</div>
-                            <div class="dropdown-user-name">{{ user.first_name|default:user.username }}</div>
-                            <div class="dropdown-user-email">{{ user.email }}</div>
-                        </div>
-                        <a href="{% url 'edit_profile' %}" class="dropdown-item">
-                            <span class="dropdown-item-icon">👤</span>
-                            <span>Edit Profile</span>
-                        </a>
-                        <a href="{% url 'change_password' %}" class="dropdown-item">
-                            <span class="dropdown-item-icon">⚙️</span>
-                            <span>Change Password</span>
-                        </a>
-                        <a href="{% url 'logout' %}" class="dropdown-item">
-                            <span class="dropdown-item-icon">🚪</span>
-                            <span>Sign Out</span>
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
