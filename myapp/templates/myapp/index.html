@@ -1,21 +1,22 @@
-<!DOCTYPE htm        body {
+<!DOCTYPE html>
+<html lang="en">       
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Tasks</title>
+    <style>
+         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: #f8f9fa;
             color: #333;
             line-height: 1.6;
             padding-top: 0;
         }tml lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Tasks</title>
-    <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
             background: #f8f9fa;
@@ -42,7 +43,7 @@
             }
         }
 
-        /* Navigation */
+        /* Top Navigation */
         .nav-bar {
             background: white;
             padding: 15px 20px;
@@ -57,51 +58,246 @@
         }
 
         .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
             font-weight: 600;
             color: #333;
-            flex-shrink: 0;
-        }
-
-        .nav-logo::before {
-            content: '📋';
             font-size: 18px;
         }
 
-        .nav-links {
+        .nav-search {
+            flex: 1;
+            max-width: 400px;
+            margin: 0 20px;
+        }
+
+        .top-search-input {
+            width: 100%;
+            padding: 8px 16px;
+            border: 1px solid #e9ecef;
+            border-radius: 20px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .top-search-input:focus {
+            border-color: #007bff;
+        }
+
+        .nav-actions {
             display: flex;
-            gap: 15px;
+            gap: 10px;
             align-items: center;
-            flex-shrink: 0;
-            white-space: nowrap;
         }
 
-        .nav-links a {
-            color: #666;
-            text-decoration: none;
-            padding: 6px 12px;
-            border-radius: 6px;
+        .theme-toggle {
+            background: none;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
             font-size: 14px;
-            transition: all 0.2s;
+            color: #666;
+            transition: background-color 0.2s;
         }
 
-        .nav-links a:hover {
+        .theme-toggle:hover {
             background: #f8f9fa;
-            color: #333;
         }
 
-        .user-info {
+        /* App Container */
+        .app-container {
+            display: flex;
+            min-height: calc(100vh - 70px);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: white;
+            border-right: 1px solid #e9ecef;
+            padding: 20px;
+            overflow-y: visible; /* Allow dropdown to overflow */
+            position: relative;
+        }
+
+        .menu-section, .lists-section {
+            margin-bottom: 30px;
+        }
+
+        .menu-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+        }
+
+        .menu-list {
+            list-style: none;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 15px;
+            border-radius: 8px;
+            color: #333;
+            text-decoration: none;
             font-size: 14px;
+            margin-bottom: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .menu-item:hover {
+            background: #f8f9fa;
+        }
+
+        .menu-item.completed {
+            color: #28a745;
+        }
+
+        .menu-item.missed {
+            color: #ffc107;
+        }
+
+        .count {
+            background: #e9ecef;
+            color: #666;
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+
+        .menu-item.completed .count {
+            background: rgba(40, 167, 69, 0.1);
+            color: #28a745;
+        }
+
+        .menu-item.missed .count {
+            background: rgba(255, 193, 7, 0.1);
+            color: #ffc107;
+        }
+
+        /* User Dropdown Container - Key positioning */
+        .user-dropdown-container {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e9ecef;
+            width: 100%;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            border: 2px solid transparent;
+            width: 100%;
+            margin-bottom: 0;
+        }
+
+        .user-profile:hover {
+            background: #f8f9fa;
+            border-color: #007bff;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: #007bff;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .user-details {
+            flex: 1;
+        }
+
+        .user-name {
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .user-email {
+            font-size: 12px;
             color: #666;
         }
 
-        /* Main container */
-        .container {
-            max-width: 700px;
+        .dropdown-arrow {
+            font-size: 10px;
+            color: #666;
+            transition: transform 0.2s;
+        }
+
+        .user-profile:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* User Dropdown Menu - simple block positioning */
+        .user-dropdown-menu {
+            width: 100%;
+            margin-top: 8px;
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .user-dropdown-menu.show {
+            opacity: 1;
+            visibility: visible;
+            max-height: 200px;
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 12px 16px;
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+            border-bottom: 1px solid #f8f9fa;
+            transition: background-color 0.2s;
+        }
+
+        .dropdown-item:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-item:hover {
+            background: #f8f9fa;
+            color: #007bff;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+
+        /* Content Wrapper */
+        .content-wrapper {
+            max-width: 800px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 0;
         }
 
         /* Header */
@@ -493,8 +689,19 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .container {
-                padding: 20px 15px;
+            .app-container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #e9ecef;
+                padding: 15px;
+            }
+            
+            .content-wrapper {
+                padding: 15px;
             }
             
             .main-title {
@@ -512,33 +719,82 @@
 
             .nav-bar {
                 padding: 10px 15px;
-                flex-wrap: nowrap !important;
             }
 
-            .nav-links {
-                gap: 10px;
+            .nav-search {
+                margin: 0 10px;
             }
 
-            .nav-links a {
-                padding: 4px 8px;
-                font-size: 13px;
+            .user-profile {
+                flex-direction: row;
+                text-align: left;
+            }
+
+            .user-dropdown-menu {
+                left: 0;
+                right: 0;
+                width: 100%;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
+    <!-- Top Navigation -->
     <nav class="nav-bar">
-        <div class="nav-logo">To Do</div>
-        <div class="nav-links">
-            <span class="user-info">👤 {{ user.first_name|default:user.username }}</span>
-            <a href="{% url 'change_password' %}">Change Password</a>
-            <a href="{% url 'logout' %}">Logout</a>
+        <div class="nav-logo">Todo App</div>
+        <div class="nav-search">
+            <input type="text" placeholder="🔍 Search tasks..." class="top-search-input">
+        </div>
+        <div class="nav-actions">
+            <button class="theme-toggle">🌙 Dark</button>
         </div>
     </nav>
 
-    <!-- Main container -->
-    <div class="container">
+    <!-- App Container -->
+    <div class="app-container">
+        <!-- Left Sidebar -->
+        <aside class="sidebar">
+            <div class="menu-section">
+                <h3 class="menu-title">MENU</h3>
+                <ul class="menu-list">
+                    <li><a href="#" class="menu-item">📅 Calendar</a></li>
+                    <li><a href="#" class="menu-item completed">✅ Completed <span class="count">3</span></a></li>
+                    <li><a href="#" class="menu-item missed">⚠️ Missed <span class="count">1</span></a></li>
+                </ul>
+            </div>
+            
+            <div class="lists-section">
+                <h3 class="menu-title">LISTS</h3>
+                <ul class="menu-list">
+                    <li><a href="#" class="menu-item">👤 Personal <span class="count">6</span></a></li>
+                    <li><a href="#" class="menu-item">💼 Work <span class="count">1</span></a></li>
+                    <li><a href="#" class="menu-item">🏠 Home <span class="count">0</span></a></li>
+                </ul>
+                
+                <!-- User Profile with Dropdown -->
+                <div class="user-dropdown-container">
+                    <div class="user-profile" onclick="toggleUserDropdown()">
+                        <div class="user-avatar">T</div>
+                        <div class="user-details">
+                            <div class="user-name">Test</div>
+                            <div class="user-email">{{ user.email|default:"test@example.com" }}</div>
+                        </div>
+                        <div class="dropdown-arrow">▼</div>
+                    </div>
+                    
+                    <!-- Dropdown Menu - positioned as next element (will appear below) -->
+                    <div class="user-dropdown-menu" id="userDropdown">
+                        <a href="#" class="dropdown-item">👤 Edit Profile</a>
+                        <a href="{% url 'change_password' %}" class="dropdown-item">🔒 Change Password</a>
+                        <a href="{% url 'logout' %}" class="dropdown-item">🚪 Sign Out</a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-wrapper">
         <!-- Header -->
         <header class="main-header">
             <h1 class="main-title">ALL TASKS</h1>
@@ -730,6 +986,26 @@
             </ul>
         </section>
         {% endif %}
+            </div>
+        </main>
     </div>
+
+    <!-- JavaScript for dropdown -->
+    <script>
+        function toggleUserDropdown() {
+            const dropdown = document.getElementById('userDropdown');
+            dropdown.classList.toggle('show');
+        }
+
+        // Close dropdown when clicking outside
+        window.onclick = function(event) {
+            if (!event.target.matches('.user-profile') && !event.target.closest('.user-profile')) {
+                const dropdown = document.getElementById('userDropdown');
+                if (dropdown.classList.contains('show')) {
+                    dropdown.classList.remove('show');
+                }
+            }
+        }
+    </script>
 </body>
 </html>
