@@ -200,11 +200,32 @@
             color: #0c5460;
         }
 
-        /* Responsive */
-        @media (max-width: 480px) {
+        /* Enhanced Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
             .auth-container {
-                margin: 20px;
-                padding: 30px 25px;
+                margin: 0;
+                max-width: 100%;
+                padding: 35px 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .auth-container {
+                margin: 0;
+                padding: 25px 20px;
+                border-radius: 15px;
+            }
+            
+            .logo {
+                margin-bottom: 25px;
             }
             
             .logo-text {
@@ -213,6 +234,70 @@
             
             .logo-icon {
                 font-size: 40px;
+            }
+            
+            .form-title {
+                font-size: 18px;
+                margin-bottom: 25px;
+            }
+            
+            .form-group {
+                margin-bottom: 18px;
+            }
+            
+            .form-label {
+                font-size: 13px;
+                margin-bottom: 6px;
+            }
+            
+            .form-input,
+            input[type="text"],
+            input[type="password"],
+            input[type="email"] {
+                padding: 12px 14px;
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+            
+            .login-btn {
+                padding: 14px;
+                font-size: 15px;
+            }
+            
+            .form-links {
+                margin-top: 20px;
+                padding-top: 15px;
+            }
+            
+            .form-links a {
+                font-size: 13px;
+                margin: 6px 0;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 360px) {
+            .auth-container {
+                padding: 20px 15px;
+            }
+            
+            .logo-text {
+                font-size: 22px;
+            }
+        }
+
+        /* Touch device optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            .form-input,
+            input[type="text"],
+            input[type="password"],
+            input[type="email"] {
+                min-height: 44px;
+                font-size: 16px;
+            }
+            
+            .login-btn {
+                min-height: 44px;
+                padding: 14px 20px;
             }
         }
     </style>

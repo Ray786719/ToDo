@@ -206,16 +206,53 @@
             color: #721c24;
         }
 
-        /* Responsive */
-        @media (max-width: 480px) {
+        /* Enhanced Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px 10px;
+            }
+            
             .profile-container {
-                margin: 20px;
-                padding: 30px 25px;
+                max-width: 100%;
+                margin: 0;
+                padding: 35px 25px;
             }
             
             .form-row {
                 grid-template-columns: 1fr;
                 gap: 0;
+                margin-bottom: 15px;
+            }
+            
+            .logo-text {
+                font-size: 26px;
+            }
+            
+            .logo-icon {
+                font-size: 44px;
+            }
+            
+            .form-input,
+            input[type="text"],
+            input[type="password"], 
+            input[type="email"] {
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px 5px;
+            }
+            
+            .profile-container {
+                margin: 0;
+                padding: 25px 20px;
+                border-radius: 15px;
+            }
+            
+            .logo {
+                margin-bottom: 25px;
             }
             
             .logo-text {
@@ -224,6 +261,69 @@
             
             .logo-icon {
                 font-size: 40px;
+            }
+            
+            .form-title {
+                font-size: 18px;
+                margin-bottom: 25px;
+            }
+            
+            .form-group {
+                margin-bottom: 18px;
+            }
+            
+            .form-label {
+                font-size: 13px;
+                margin-bottom: 6px;
+            }
+            
+            .form-input,
+            input[type="text"],
+            input[type="password"], 
+            input[type="email"] {
+                padding: 12px 14px;
+                font-size: 16px;
+            }
+            
+            .update-btn {
+                padding: 14px;
+                font-size: 15px;
+            }
+            
+            .form-links {
+                margin-top: 20px;
+                padding-top: 15px;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 360px) {
+            .profile-container {
+                padding: 20px 15px;
+            }
+            
+            .logo-text {
+                font-size: 22px;
+            }
+            
+            .form-title {
+                font-size: 17px;
+            }
+        }
+
+        /* Touch device optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            .form-input,
+            input[type="text"],
+            input[type="password"], 
+            input[type="email"] {
+                min-height: 44px;
+                font-size: 16px;
+            }
+            
+            .update-btn {
+                min-height: 44px;
+                padding: 14px 20px;
             }
         }
     </style>
