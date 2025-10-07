@@ -288,7 +288,8 @@
             margin-bottom: 10px;
             cursor: pointer;
             transition: background-color 0.2s;
-            position: relative;
+            position: relative !important;
+            overflow: visible !important;
         }
 
         .user-info:hover {
@@ -324,9 +325,11 @@
         }
 
         .profile-dropdown {
-            position: absolute;
-            top: calc(100% + 8px);
-            right: 0;
+            position: absolute !important;
+            top: 100% !important;
+            right: 0 !important;
+            left: auto !important;
+            bottom: auto !important;
             width: 240px;
             background: white;
             border-radius: 12px;
@@ -338,6 +341,7 @@
             transform: translateY(-10px);
             transition: all 0.3s ease;
             z-index: 1001;
+            margin-top: 8px !important;
         }
 
         .profile-dropdown.show {
@@ -346,9 +350,9 @@
             transform: translateY(0);
         }
 
-        /* Debug: Make dropdown more visible for testing */
+        /* Ensure dropdown positioning is not overridden */
         .profile-dropdown {
-            border: 2px solid #007bff !important;
+            border: 1px solid #e9ecef !important;
         }
 
         .dropdown-item {
