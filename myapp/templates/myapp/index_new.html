@@ -324,9 +324,9 @@
         }
 
         .profile-dropdown {
-            position: fixed;
-            bottom: 80px;
-            left: 20px;
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
             width: 240px;
             background: white;
             border-radius: 12px;
@@ -335,7 +335,7 @@
             overflow: hidden;
             opacity: 0;
             visibility: hidden;
-            transform: translateY(20px);
+            transform: translateY(-10px);
             transition: all 0.3s ease;
             z-index: 1001;
         }
