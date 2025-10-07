@@ -1,5 +1,13 @@
 {
     "python-envs.defaultEnvManager": "ms-python.python:system",
     "python-envs.pythonProjects": [],
-    "python.terminal.useEnvFile": true
+    "python.terminal.useEnvFile": true,
+    "files.associations": {
+        "*.html": "django-html"
+    },
+    "css.validate": false,
+    "html.validate.scripts": false,
+    "emmet.includeLanguages": {
+        "django-html": "html"
+    }
 }
