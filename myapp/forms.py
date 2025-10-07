@@ -6,33 +6,45 @@ from .models import Todo
 class TodoForm(forms.ModelForm):
     due_date = forms.DateField(
         required=False,
+        label='Due Date',
         widget=forms.DateInput(attrs={
             'type': 'date',
-            'class': 'form-control'
+            'class': 'form-control',
+            'aria-describedby': 'due-date-help'
         })
     )
     due_time = forms.TimeField(
         required=False,
+        label='Due Time',
         widget=forms.TimeInput(attrs={
             'type': 'time',
-            'class': 'form-control'
+            'class': 'form-control',
+            'aria-describedby': 'due-time-help'
         })
     )
     
     class Meta:
         model = Todo
         fields = ['text', 'due_date', 'due_time', 'priority', 'category']
+        labels = {
+            'text': 'Task Description',
+            'priority': 'Priority Level',
+            'category': 'Category',
+        }
         widgets = {
             'text': forms.TextInput(attrs={
                 'placeholder': 'I want to...', 
                 'class': 'form-control todo-input',
-                'required': True
+                'required': True,
+                'aria-describedby': 'task-help'
             }),
             'priority': forms.Select(attrs={
-                'class': 'form-control'
+                'class': 'form-control',
+                'aria-describedby': 'priority-help'
             }),
             'category': forms.Select(attrs={
-                'class': 'form-control'
+                'class': 'form-control',
+                'aria-describedby': 'category-help'
             })
         }
 

@@ -29,11 +29,11 @@
             --sidebar-bg: #2d2d2d;
             --sidebar-border: #404040;
             --text-primary: #ffffff;
-            --text-secondary: #b3b3b3;
-            --text-muted: #8d8d8d;
+            --text-secondary: #e0e0e0; /* Improved contrast from #b3b3b3 */
+            --text-muted: #a0a0a0; /* Improved contrast from #8d8d8d */
             --task-text: #ffffff;
             --task-bg: #333333;
-            --border-color: #404040;
+            --border-color: #505050; /* Improved contrast from #404040 */
             --input-bg: #404040;
             --input-focus-bg: #4a4a4a;
             --shadow-light: rgba(0, 0, 0, 0.3);
@@ -44,6 +44,34 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+
+        /* Screen Reader Only Text */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Focus indicators for accessibility */
+        :focus {
+            outline: 2px solid #667eea;
+            outline-offset: 2px;
+        }
+
+        :focus:not(:focus-visible) {
+            outline: none;
+        }
+
+        :focus-visible {
+            outline: 2px solid #667eea;
+            outline-offset: 2px;
         }
 
         body {
@@ -215,7 +243,7 @@
         .nav-section-title {
             font-size: 12px;
             font-weight: 600;
-            color: #6c757d;
+            color: var(--text-secondary);
             text-transform: uppercase;
             letter-spacing: 1px;
             padding: 0 20px;
@@ -227,7 +255,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 10px 20px;
-            color: #495057;
+            color: var(--text-primary);
             text-decoration: none;
             transition: background-color 0.2s;
             cursor: pointer;
@@ -254,12 +282,14 @@
         }
 
         .nav-item-count {
-            background: #e9ecef;
-            color: #6c757d;
+            background: var(--border-color);
+            color: var(--text-secondary);
             padding: 2px 8px;
             border-radius: 10px;
             font-size: 12px;
             font-weight: 500;
+            min-width: 20px;
+            text-align: center;
         }
 
         .nav-item.active .nav-item-count {
@@ -359,7 +389,7 @@
             display: flex;
             align-items: center;
             padding: 12px 16px;
-            color: #495057;
+            color: var(--text-primary);
             text-decoration: none;
             transition: background-color 0.2s;
             border: none;
@@ -370,7 +400,7 @@
         }
 
         .dropdown-item:hover {
-            background: #f8f9fa;
+            background: var(--input-bg);
         }
 
         .dropdown-item-icon {
@@ -488,6 +518,22 @@
 
         .form-group {
             position: relative;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .form-text {
+            display: block;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 4px;
+            line-height: 1.3;
         }
 
         .form-control,
@@ -1203,131 +1249,150 @@
 
     <div class="app-container">
         <!-- Top Menu Bar -->
-        <div class="top-menu">
+        <header class="top-menu">
             <div class="menu-left">
                 <h1 class="menu-title">Todo App</h1>
                 <!-- Search -->
-                <form method="get" class="search-box">
-                    <input type="text" name="search" class="search-input" 
-                           placeholder="Search tasks..." value="{{ search_query }}">
-                    <span class="search-icon">🔍</span>
+                <form method="get" class="search-box" role="search">
+                    <label for="search-input" class="sr-only">Search tasks</label>
+                    <input type="text" name="search" id="search-input" class="search-input" 
+                           placeholder="Search tasks..." value="{{ search_query }}" 
+                           aria-label="Search through your tasks">
+                    <span class="search-icon" aria-hidden="true">🔍</span>
                 </form>
             </div>
             <div class="menu-right">
-                <button class="theme-toggle" onclick="toggleTheme()">
-                    <span id="theme-icon">🌙</span>
+                <button class="theme-toggle" onclick="toggleTheme()" 
+                        aria-label="Toggle dark mode" 
+                        aria-pressed="false"
+                        type="button">
+                    <span id="theme-icon" aria-hidden="true">🌙</span>
                     <span id="theme-text">Dark</span>
                 </button>
                 <!-- User Profile -->
-                <div class="user-info" onclick="toggleProfileDropdown()">
-                    <div class="user-avatar">{{ user.first_name.0|default:user.username.0 }}</div>
+                <div class="user-info" 
+                     onclick="toggleProfileDropdown()" 
+                     role="button"
+                     tabindex="0"
+                     aria-expanded="false"
+                     aria-haspopup="true"
+                     aria-controls="profileDropdown"
+                     onkeydown="handleProfileKeydown(event)">
+                    <div class="user-avatar" aria-hidden="true">{{ user.first_name.0|default:user.username.0 }}</div>
                     <div class="user-details">
                         <div style="font-weight: 500;">{{ user.first_name|default:user.username }}</div>
                         <div style="font-size: 12px; color: #6c757d;">{{ user.email }}</div>
                     </div>
-                    <span class="dropdown-arrow">▼</span>
+                    <span class="dropdown-arrow" aria-hidden="true">▼</span>
                     
-                    <div class="profile-dropdown" id="profileDropdown">
+                    <div class="profile-dropdown" id="profileDropdown" role="menu" aria-labelledby="profile-menu-label">
                         <div class="dropdown-user-info">
                             <div class="dropdown-user-avatar">{{ user.first_name.0|default:user.username.0 }}</div>
                             <div class="dropdown-user-name">{{ user.first_name|default:user.username }}</div>
                             <div class="dropdown-user-email">{{ user.email }}</div>
                         </div>
-                        <a href="{% url 'edit_profile' %}" class="dropdown-item">
-                            <span class="dropdown-item-icon">👤</span>
+                        <a href="{% url 'edit_profile' %}" class="dropdown-item" role="menuitem">
+                            <span class="dropdown-item-icon" aria-hidden="true">👤</span>
                             <span>Edit Profile</span>
                         </a>
-                        <a href="{% url 'change_password' %}" class="dropdown-item">
-                            <span class="dropdown-item-icon">⚙️</span>
+                        <a href="{% url 'change_password' %}" class="dropdown-item" role="menuitem">
+                            <span class="dropdown-item-icon" aria-hidden="true">⚙️</span>
                             <span>Change Password</span>
                         </a>
-                        <a href="{% url 'logout' %}" class="dropdown-item">
-                            <span class="dropdown-item-icon">🚪</span>
+                        <a href="{% url 'logout' %}" class="dropdown-item" role="menuitem">
+                            <span class="dropdown-item-icon" aria-hidden="true">🚪</span>
                             <span>Sign Out</span>
                         </a>
                     </div>
                 </div>
             </div>
-        </div>
+        </header>
         
         <!-- Content Wrapper -->
         <div class="content-wrapper">
             <!-- Menu Sidebar -->
-            <div class="sidebar">
+            <nav class="sidebar" role="navigation" aria-label="Main navigation">
                 <div class="sidebar-header">
                     <h3 style="color: var(--text-secondary); font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px;">Menu</h3>
                 </div>
 
             <div class="sidebar-nav">
                 <!-- Tasks Section -->
-                <div class="nav-section">
-                    <div class="nav-section-title">Tasks</div>
-                    <a href="?view=upcoming" class="nav-item {% if view == 'upcoming' %}active{% endif %}">
+                <div class="nav-section" role="group" aria-labelledby="tasks-heading">
+                    <h4 id="tasks-heading" class="nav-section-title">Tasks</h4>
+                    <a href="?view=upcoming" class="nav-item {% if view == 'upcoming' %}active{% endif %}" 
+                       {% if view == 'upcoming' %}aria-current="page"{% endif %}>
                         <div class="nav-item-content">
-                            <span class="nav-item-icon">📅</span>
+                            <span class="nav-item-icon" aria-hidden="true">📅</span>
                             <span>Upcoming</span>
                         </div>
-                        <span class="nav-item-count">{{ upcoming_todos|length }}</span>
+                        <span class="nav-item-count" aria-label="{{ upcoming_todos|length }} upcoming tasks">{{ upcoming_todos|length }}</span>
                     </a>
-                    <a href="?view=today" class="nav-item {% if view == 'today' or not view %}active{% endif %}">
+                    <a href="?view=today" class="nav-item {% if view == 'today' or not view %}active{% endif %}"
+                       {% if view == 'today' or not view %}aria-current="page"{% endif %}>
                         <div class="nav-item-content">
-                            <span class="nav-item-icon">📋</span>
+                            <span class="nav-item-icon" aria-hidden="true">📋</span>
                             <span>Today</span>
                         </div>
-                        <span class="nav-item-count">{{ today_todos|length }}</span>
+                        <span class="nav-item-count" aria-label="{{ today_todos|length }} tasks for today">{{ today_todos|length }}</span>
                     </a>
                     <a href="?view=calendar" class="nav-item">
                         <div class="nav-item-content">
-                            <span class="nav-item-icon">🗓️</span>
+                            <span class="nav-item-icon" aria-hidden="true">🗓️</span>
                             <span>Calendar</span>
                         </div>
                     </a>
-                    <a href="?view=completed" class="nav-item {% if view == 'completed' %}active{% endif %}">
+                    <a href="?view=completed" class="nav-item {% if view == 'completed' %}active{% endif %}"
+                       {% if view == 'completed' %}aria-current="page"{% endif %}>
                         <div class="nav-item-content">
-                            <span class="nav-item-icon">✅</span>
+                            <span class="nav-item-icon" aria-hidden="true">✅</span>
                             <span>Completed</span>
                         </div>
-                        <span class="nav-item-count">{{ completed_count }}</span>
+                        <span class="nav-item-count" aria-label="{{ completed_count }} completed tasks">{{ completed_count }}</span>
                     </a>
-                    <a href="?view=missed" class="nav-item {% if view == 'missed' %}active{% endif %}">
+                    <a href="?view=missed" class="nav-item {% if view == 'missed' %}active{% endif %}"
+                       {% if view == 'missed' %}aria-current="page"{% endif %}>
                         <div class="nav-item-content">
-                            <span class="nav-item-icon">⚠️</span>
+                            <span class="nav-item-icon" aria-hidden="true">⚠️</span>
                             <span>Missed</span>
                         </div>
-                        <span class="nav-item-count">{{ missed_count }}</span>
+                        <span class="nav-item-count" aria-label="{{ missed_count }} missed tasks">{{ missed_count }}</span>
                     </a>
                 </div>
 
                 <!-- Lists Section -->
-                <div class="nav-section">
-                    <div class="nav-section-title">Lists</div>
-                    <a href="?category=personal" class="nav-item {% if category == 'personal' %}active{% endif %}">
+                <div class="nav-section" role="group" aria-labelledby="lists-heading">
+                    <h4 id="lists-heading" class="nav-section-title">Lists</h4>
+                    <a href="?category=personal" class="nav-item {% if category == 'personal' %}active{% endif %}"
+                       {% if category == 'personal' %}aria-current="page"{% endif %}>
                         <div class="nav-item-content">
-                            <span class="nav-item-icon">👤</span>
+                            <span class="nav-item-icon" aria-hidden="true">👤</span>
                             <span>Personal</span>
                         </div>
-                        <span class="nav-item-count">{{ personal_count }}</span>
+                        <span class="nav-item-count" aria-label="{{ personal_count }} personal tasks">{{ personal_count }}</span>
                     </a>
-                    <a href="?category=work" class="nav-item {% if category == 'work' %}active{% endif %}">
+                    <a href="?category=work" class="nav-item {% if category == 'work' %}active{% endif %}"
+                       {% if category == 'work' %}aria-current="page"{% endif %}>
                         <div class="nav-item-content">
-                            <span class="nav-item-icon">💼</span>
+                            <span class="nav-item-icon" aria-hidden="true">💼</span>
                             <span>Work</span>
                         </div>
-                        <span class="nav-item-count">{{ work_count }}</span>
+                        <span class="nav-item-count" aria-label="{{ work_count }} work tasks">{{ work_count }}</span>
                     </a>
-                    <a href="?category=home" class="nav-item {% if category == 'home' %}active{% endif %}">
+                    <a href="?category=home" class="nav-item {% if category == 'home' %}active{% endif %}"
+                       {% if category == 'home' %}aria-current="page"{% endif %}>
                         <div class="nav-item-content">
-                            <span class="nav-item-icon">🏠</span>
+                            <span class="nav-item-icon" aria-hidden="true">🏠</span>
                             <span>Home</span>
                         </div>
-                        <span class="nav-item-count">{{ home_count }}</span>
+                        <span class="nav-item-count" aria-label="{{ home_count }} home tasks">{{ home_count }}</span>
                     </a>
                 </div>
-            </div>
+            </nav>
         </div>
 
         <!-- Main Content -->
-        <div class="main-content">
+        <main class="main-content">
             <div class="main-header">
                 <h1 class="main-title">
                     {% if category == 'work' %}Work Tasks
@@ -1343,28 +1408,39 @@
 
             <div class="content-area">
                 <!-- Add Task Section -->
-                <div class="add-task-section">
-                    <button class="add-task-btn" onclick="toggleAddForm()">
+                <section class="add-task-section" aria-labelledby="add-task-heading">
+                    <h2 id="add-task-heading" class="sr-only">Add New Task</h2>
+                    <button class="add-task-btn" onclick="toggleAddForm()" aria-expanded="false" aria-controls="addTaskForm">
                         ➕ Add New Task
                     </button>
                     
-                    <form method="post" class="add-task-form" id="addTaskForm">
+                    <form method="post" class="add-task-form" id="addTaskForm" role="form" aria-labelledby="add-task-heading">
                         {% csrf_token %}
                         <div class="form-row">
                             <div class="form-group">
+                                <label for="{{ form.text.id_for_label }}" class="form-label">{{ form.text.label }}</label>
                                 {{ form.text }}
+                                <small id="task-help" class="form-text">Enter a description of what you want to accomplish</small>
                             </div>
                             <div class="form-group">
+                                <label for="{{ form.due_date.id_for_label }}" class="form-label">{{ form.due_date.label }}</label>
                                 {{ form.due_date }}
+                                <small id="due-date-help" class="form-text">Optional: Set a due date</small>
                             </div>
                             <div class="form-group">
+                                <label for="{{ form.due_time.id_for_label }}" class="form-label">{{ form.due_time.label }}</label>
                                 {{ form.due_time }}
+                                <small id="due-time-help" class="form-text">Optional: Set a specific time</small>
                             </div>
                             <div class="form-group">
+                                <label for="{{ form.priority.id_for_label }}" class="form-label">{{ form.priority.label }}</label>
                                 {{ form.priority }}
+                                <small id="priority-help" class="form-text">Choose task importance</small>
                             </div>
                             <div class="form-group">
+                                <label for="{{ form.category.id_for_label }}" class="form-label">{{ form.category.label }}</label>
                                 {{ form.category }}
+                                <small id="category-help" class="form-text">Organize by category</small>
                             </div>
                         </div>
                         <div class="form-actions">
@@ -1372,21 +1448,28 @@
                             <button type="submit" class="btn btn-primary">Add Task</button>
                         </div>
                     </form>
-                </div>
+                </section>
 
                 <!-- Task List -->
-                <ul class="task-list">
+                <section aria-labelledby="task-list-heading">
+                    <h2 id="task-list-heading" class="sr-only">Task List</h2>
+                    <ul class="task-list">
                     {% for todo in current_todos %}
                     <li class="task-item {% if todo.completed %}completed{% endif %} {% if todo.due_date < today_date and not todo.completed %}overdue{% endif %}">
+                        <article class="task-article" aria-labelledby="task-{{ todo.id }}-text">
                         <form method="post" action="{% url 'toggle_todo' todo.id %}" style="margin: 0;">
                             {% csrf_token %}
-                            <input type="checkbox" class="task-checkbox" 
+                            <label for="task-checkbox-{{ todo.id }}" class="sr-only">
+                                {% if todo.completed %}Mark as incomplete{% else %}Mark as complete{% endif %}: {{ todo.text }}
+                            </label>
+                            <input type="checkbox" id="task-checkbox-{{ todo.id }}" class="task-checkbox" 
                                    {% if todo.completed %}checked{% endif %} 
-                                   onchange="this.form.submit();">
+                                   onchange="this.form.submit();"
+                                   aria-describedby="task-{{ todo.id }}-text">
                         </form>
                         
                         <div class="task-content">
-                            <div class="task-text">{{ todo.text }}</div>
+                            <h3 id="task-{{ todo.id }}-text" class="task-text">{{ todo.text }}</h3>
                             <div class="task-meta">
                                 {% if todo.due_date %}
                                 <div class="task-date">
@@ -1411,13 +1494,18 @@
                         </div>
                         
                         <div class="task-actions">
-                            <a href="{% url 'edit_todo' todo.id %}" class="action-btn edit-btn">✏️</a>
+                            <a href="{% url 'edit_todo' todo.id %}" class="action-btn edit-btn" 
+                               aria-label="Edit task: {{ todo.text }}">
+                               <span aria-hidden="true">✏️</span>
+                               <span class="sr-only">Edit</span>
+                            </a>
                             <form method="post" action="{% url 'delete_todo' todo.id %}" style="display: inline;" 
                                   onsubmit="return confirm('Are you sure you want to delete this task?');">
                                 {% csrf_token %}
-                                <button type="submit" class="action-btn delete-btn">🗑️</button>
+                                <button type="submit" class="action-btn delete-btn" aria-label="Delete task: {{ todo.text }}">🗑️</button>
                             </form>
                         </div>
+                        </article>
                     </li>
                     {% empty %}
                     <li class="empty-state">
@@ -1427,22 +1515,29 @@
                     {% endfor %}
                 </ul>
 
+                </section>
+
                 <!-- Overdue Tasks Section -->
                 {% if overdue_todos and not category and not view %}
-                <div style="margin-top: 40px;">
-                    <h3 style="color: #dc3545; margin-bottom: 20px;">🚨 Overdue Tasks</h3>
+                <section aria-labelledby="overdue-heading" style="margin-top: 40px;">
+                    <h3 id="overdue-heading" style="color: #dc3545; margin-bottom: 20px;">🚨 Overdue Tasks</h3>
                     <ul class="task-list">
                         {% for todo in overdue_todos %}
                         <li class="task-item overdue">
+                            <article class="task-article" aria-labelledby="overdue-task-{{ todo.id }}-text">
                             <form method="post" action="{% url 'toggle_todo' todo.id %}" style="margin: 0;">
                                 {% csrf_token %}
-                                <input type="checkbox" class="task-checkbox" 
+                                <label for="overdue-checkbox-{{ todo.id }}" class="sr-only">
+                                    {% if todo.completed %}Mark as incomplete{% else %}Mark as complete{% endif %}: {{ todo.text }}
+                                </label>
+                                <input type="checkbox" id="overdue-checkbox-{{ todo.id }}" class="task-checkbox" 
                                        {% if todo.completed %}checked{% endif %} 
-                                       onchange="this.form.submit();">
+                                       onchange="this.form.submit();"
+                                       aria-describedby="overdue-task-{{ todo.id }}-text">
                             </form>
                             
                             <div class="task-content">
-                                <div class="task-text">{{ todo.text }}</div>
+                                <h3 id="overdue-task-{{ todo.id }}-text" class="task-text">{{ todo.text }}</h3>
                                 <div class="task-meta">
                                     <div class="task-date" style="color: #dc3545; font-weight: bold;">
                                         <span>📅</span>
@@ -1458,29 +1553,41 @@
                             </div>
                             
                             <div class="task-actions">
-                                <a href="{% url 'edit_todo' todo.id %}" class="action-btn edit-btn">✏️</a>
+                                <a href="{% url 'edit_todo' todo.id %}" class="action-btn edit-btn" 
+                                   aria-label="Edit overdue task: {{ todo.text }}">
+                                   <span aria-hidden="true">✏️</span>
+                                   <span class="sr-only">Edit</span>
+                                </a>
                                 <form method="post" action="{% url 'delete_todo' todo.id %}" style="display: inline;" 
                                       onsubmit="return confirm('Are you sure you want to delete this task?');">
                                     {% csrf_token %}
-                                    <button type="submit" class="action-btn delete-btn">🗑️</button>
+                                    <button type="submit" class="action-btn delete-btn" aria-label="Delete overdue task: {{ todo.text }}">🗑️</button>
                                 </form>
                             </div>
+                            </article>
                         </li>
                         {% endfor %}
                     </ul>
-                </div>
+                </section>
                 {% endif %}
             </div>
-        </div>
+        </main>
     </div>
 
     <script>
         function toggleAddForm() {
             const form = document.getElementById('addTaskForm');
+            const button = document.querySelector('.add-task-btn');
+            const isActive = form.classList.contains('active');
+            
             form.classList.toggle('active');
+            button.setAttribute('aria-expanded', !isActive);
             
             if (form.classList.contains('active')) {
-                form.querySelector('input[type="text"]').focus();
+                const firstInput = form.querySelector('input[type="text"]');
+                firstInput.focus();
+            } else {
+                button.focus();
             }
         }
 
@@ -1488,12 +1595,37 @@
         function toggleProfileDropdown() {
             const userInfo = document.querySelector('.user-info');
             const dropdown = document.getElementById('profileDropdown');
+            const isExpanded = userInfo.getAttribute('aria-expanded') === 'true';
             
             userInfo.classList.toggle('active');
             dropdown.classList.toggle('show');
+            userInfo.setAttribute('aria-expanded', !isExpanded);
+            
+            if (!isExpanded) {
+                // Focus first menu item when opening
+                const firstMenuItem = dropdown.querySelector('.dropdown-item');
+                if (firstMenuItem) {
+                    firstMenuItem.focus();
+                }
+            }
         }
 
-        // Close dropdown when clicking outside
+        // Handle keyboard navigation for profile dropdown
+        function handleProfileKeydown(event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                toggleProfileDropdown();
+            } else if (event.key === 'Escape') {
+                const userInfo = document.querySelector('.user-info');
+                const dropdown = document.getElementById('profileDropdown');
+                userInfo.classList.remove('active');
+                dropdown.classList.remove('show');
+                userInfo.setAttribute('aria-expanded', 'false');
+                userInfo.focus();
+            }
+        }
+
+        // Close dropdown when clicking outside or on escape
         document.addEventListener('click', function(event) {
             const userInfo = document.querySelector('.user-info');
             const dropdown = document.getElementById('profileDropdown');
@@ -1501,6 +1633,29 @@
             if (!userInfo.contains(event.target)) {
                 userInfo.classList.remove('active');
                 dropdown.classList.remove('show');
+                userInfo.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Handle escape key globally
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                // Close any open dropdowns or forms
+                const dropdown = document.getElementById('profileDropdown');
+                const userInfo = document.querySelector('.user-info');
+                const form = document.getElementById('addTaskForm');
+                const addButton = document.querySelector('.add-task-btn');
+                
+                if (dropdown.classList.contains('show')) {
+                    userInfo.classList.remove('active');
+                    dropdown.classList.remove('show');
+                    userInfo.setAttribute('aria-expanded', 'false');
+                    userInfo.focus();
+                } else if (form.classList.contains('active')) {
+                    form.classList.remove('active');
+                    addButton.setAttribute('aria-expanded', 'false');
+                    addButton.focus();
+                }
             }
         });
 
@@ -1509,17 +1664,22 @@
             const body = document.body;
             const themeIcon = document.getElementById('theme-icon');
             const themeText = document.getElementById('theme-text');
+            const themeButton = document.querySelector('.theme-toggle');
             
             // Toggle theme
             if (body.getAttribute('data-theme') === 'dark') {
                 body.removeAttribute('data-theme');
                 themeIcon.textContent = '🌙';
                 themeText.textContent = 'Dark';
+                themeButton.setAttribute('aria-pressed', 'false');
+                themeButton.setAttribute('aria-label', 'Enable dark mode');
                 localStorage.setItem('theme', 'light');
             } else {
                 body.setAttribute('data-theme', 'dark');
                 themeIcon.textContent = '☀️';
                 themeText.textContent = 'Light';
+                themeButton.setAttribute('aria-pressed', 'true');
+                themeButton.setAttribute('aria-label', 'Disable dark mode');
                 localStorage.setItem('theme', 'dark');
             }
         }
@@ -1530,11 +1690,14 @@
             const body = document.body;
             const themeIcon = document.getElementById('theme-icon');
             const themeText = document.getElementById('theme-text');
+            const themeButton = document.querySelector('.theme-toggle');
             
             if (savedTheme === 'dark') {
                 body.setAttribute('data-theme', 'dark');
                 themeIcon.textContent = '☀️';
                 themeText.textContent = 'Light';
+                themeButton.setAttribute('aria-pressed', 'true');
+                themeButton.setAttribute('aria-label', 'Disable dark mode');
             }
         });
 
