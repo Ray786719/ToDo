@@ -9,6 +9,9 @@ A professional, fully accessible Django web application for task management with
 
 **Tested with Google PageSpeed Insights** (pagespeed.web.dev) - October 7, 2025:
 
+![PageSpeed Insights Results](docs/images/pagespeed-results.png)
+*Perfect scores achieved: Performance 100/100, Accessibility 100/100, Best Practices 100/100, SEO 90/100*
+
 - **🟢 Performance: 100/100** - Lightning fast loading
 - **🟢 Accessibility: 100/100** - WCAG 2.1 AA compliant  
 - **🟢 Best Practices: 100/100** - Enterprise-grade security
