@@ -150,21 +150,22 @@
 
         /* Sidebar - Now for menu items */
         .sidebar {
-            width: 280px;
+            width: 320px; /* Increased from 280px for better content visibility */
             background: var(--sidebar-bg);
             border-right: 1px solid var(--sidebar-border);
             display: flex;
             flex-direction: column;
-            padding: 20px 0;
+            padding: 15px 0; /* Reduced padding to fit more content */
             overflow-y: auto;
             transition: all 0.3s ease;
+            min-height: calc(100vh - 85px); /* Ensure full height minus top menu */
         }
 
         /* Main Content */
         .main-content {
             flex: 1;
-            padding: 30px;
-            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
             background: var(--app-bg);
         }
 
@@ -197,7 +198,7 @@
 
         /* Sidebar Header - Now just for search */
         .sidebar-header {
-            padding: 0 20px 20px;
+            padding: 0 15px 15px; /* Reduced padding to save space */
             border-bottom: 1px solid var(--sidebar-border);
         }
 
@@ -252,13 +253,13 @@
 
         .sidebar-nav {
             flex: 1;
-            padding: 20px 0;
+            padding: 15px 0; /* Reduced padding to fit more content */
             overflow-y: auto;
             min-height: 0;
         }
 
         .nav-section {
-            margin-bottom: 30px;
+            margin-bottom: 20px; /* Reduced from 30px to fit more content */
         }
 
         .nav-section-title {
@@ -267,15 +268,15 @@
             color: var(--text-secondary);
             text-transform: uppercase;
             letter-spacing: 1px;
-            padding: 0 20px;
-            margin-bottom: 10px;
+            padding: 0 15px; /* Reduced to match nav-item padding */
+            margin-bottom: 8px; /* Reduced from 10px */
         }
 
         .nav-item {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 10px 20px;
+            padding: 8px 15px; /* Reduced padding to fit more content */
             color: var(--text-primary);
             text-decoration: none;
             transition: background-color 0.2s;
