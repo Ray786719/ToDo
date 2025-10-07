@@ -906,14 +906,14 @@
             }
         }
 
-        /* Tablet Landscape (768px to 991px) */
-        @media (max-width: 991px) and (min-width: 768px) {
+        /* Small Desktop/Large Tablet (668px to 991px) */
+        @media (max-width: 991px) and (min-width: 668px) {
             .app-container {
                 margin: 15px;
             }
             
             .sidebar {
-                width: 280px;
+                width: 260px; /* Slightly smaller for smaller screens but still visible */
             }
             
             .form-row {
@@ -931,8 +931,8 @@
             }
         }
 
-        /* Tablet Portrait and Small Laptop (576px to 767px) */
-        @media (max-width: 767px) and (min-width: 576px) {
+        /* Tablet Portrait (576px to 667px) */
+        @media (max-width: 667px) and (min-width: 576px) {
             body {
                 overflow: auto;
             }
