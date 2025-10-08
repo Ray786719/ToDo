@@ -1,53 +1,37 @@
-# 📋 Django Todo App - Task Management Made Simple
+# 📋 Django Todo App 
 
-A professional, fully accessible Django web application for task management with modern UI/UX design and comprehensive functionality.
+## Front End Design
+
+Designed a front-end that meets accessibility guidelines and follows UX design principles. Created a responsive full-stack application that meets its given purpose, provides a set of user interactions, and uses custom HTML and CSS/CSS frameworks.
+Used Semantic HTML. No Web Content Accessibility Guideline (WCAG) errors found. A user-friendly interface with consistent styles, clear navigation, and adherence to wireframes/mockups. The layout adapted to different screen sizes using CSS media queries, Flexbox, and Grid without any major errors/loss of functionality.
+
+## Wireframes
+
+These are saved in docs folder with file names **Home Page Desktop, Tablet and Android**
 
 ## 🌟 **Live Demo**
+
 **🔗 [View Live Application](https://code-todo-0cd7c0299313.herokuapp.com/)**
 
 ## 🏆 **Performance & Quality Metrics**
 
 **Tested with Google PageSpeed Insights** (pagespeed.web.dev) - October 7, 2025:
 
-![PageSpeed Insights Results - October 7, 2025](PASTE_YOUR_SCREENSHOT_HERE)
-
-*Perfect scores achieved: Performance 100/100, Accessibility 100/100, Best Practices 100/100, SEO 90/100*
+![PageSpeed Insights Results - October 7, 2025] <img width="960" height="433" alt="Screenshot 2025-10-07 18 27 42" src="https://github.com/user-attachments/assets/f8823cd2-7dcc-432d-b1c2-19b781eb8b15" />
 
 - **🟢 Performance: 100/100** - Lightning fast loading
 - **🟢 Accessibility: 100/100** - WCAG 2.1 AA compliant  
 - **🟢 Best Practices: 100/100** - Enterprise-grade security
 - **🟢 SEO: 90/100** - Search engine optimized
 
-> **Industry Benchmark**: These scores place this application in the **top 1% of websites globally** for performance and accessibility.
+## 🗄️ **Database**
 
-## 🗄️ **Database Architecture & Models**
+Builded a database backed Django web application to manage data records. Designed a database structure with custom model which fits the Project requirement. 
+Applied correct implementation of Django models with appropriate fields, relationships, and constraints.
+Used of Django’s ORM for data management to ensure efficient and secure database operations.
 
-### **Custom Django Model Implementation**
-The application features a comprehensive `Todo` model that demonstrates professional Django development:
+### **Features**
 
-```python
-class Todo(models.Model):
-    # User relationship with CASCADE deletion
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='todos')
-    
-    # Core task fields
-    text = models.CharField(max_length=200)
-    completed = models.BooleanField(default=False)
-    
-    # Advanced scheduling
-    due_date = models.DateField(null=True, blank=True)
-    due_time = models.TimeField(null=True, blank=True)
-    
-    # Organization features
-    priority = models.CharField(max_length=10, choices=PRIORITY_CHOICES, default='medium')
-    category = models.CharField(max_length=10, choices=CATEGORY_CHOICES, default='personal')
-    
-    # Automatic timestamps
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-```
-
-### **Database Features**
 - ✅ **Multi-database support**: SQLite (development) + PostgreSQL (production)
 - ✅ **Secure ORM operations**: All queries filtered by authenticated user
 - ✅ **Proper relationships**: ForeignKey with CASCADE deletion and related_name
@@ -55,7 +39,8 @@ class Todo(models.Model):
 - ✅ **Efficient queries**: Optimized with proper filtering and indexing
 - ✅ **Migration management**: 4 migrations tracking model evolution
 
-### **Django ORM Usage Examples**
+### **ORM Usage Examples**
+
 ```python
 # Secure user-filtered queries
 user_todos = Todo.objects.filter(user=request.user)
@@ -67,6 +52,7 @@ upcoming_todos = user_todos.filter(due_date__gt=tomorrow)
 # Efficient lookups with get_object_or_404
 todo = get_object_or_404(Todo, id=todo_id, user=request.user)
 ```
+
 
 ## 🛠️ **Technologies Used**
 
