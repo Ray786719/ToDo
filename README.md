@@ -20,7 +20,7 @@ he application design was planned using **Balsamiq Wireframes** following a mobi
 
 **Tested with Google PageSpeed Insights** (pagespeed.web.dev) - October 7, 2025:
 
-![PageSpeed Insights Results - October 7, 2025] <img width="960" height="433" alt="Screenshot 2025-10-07 18 27 42" src="https://github.com/user-attachments/assets/f8823cd2-7dcc-432d-b1c2-19b781eb8b15" />
+![PageSpeed Insights Results - October 7, 2025](https://github.com/user-attachments/assets/f8823cd2-7dcc-432d-b1c2-19b781eb8b15)
 
 - **🟢 Performance: 100/100** - Lightning fast loading
 - **🟢 Accessibility: 100/100** - WCAG 2.1 AA compliant  
@@ -96,7 +96,7 @@ As a visually impaired user, I want screen reader support so I can use the app
 As a mobile user, I want touch-friendly interface so I can manage tasks on-the-go
 As a user, I want dark/light theme toggle so I can customize my experience
 As a user, I want to search tasks so I can quickly find specific items
-As a user, I want to filter by category/priority so I can focus on relevant tasks
+
 
 **Epic 4: Performance & Deployment**
 
@@ -114,7 +114,7 @@ Screenshots of the board at different stages of development are included below a
 
 📸 [Placeholder: Insert board screenshots here]
 
-MoSCoW Prioritisation Priority Feature Must Have User registration and login functionality, Add new tasks to the to-do list Edit and delete existing tasks, Mark tasks as complete/incomplete Responsive design for desktop, tablet, and mobile. Should Have Categorise tasks (e.g., Work, Personal), Display completed tasks separately from pending ones. Could Have Add due dates and reminders for tasks Search or filter tasks. Won’t Have Sharing tasks with other users (out of current scope), Integration with external calendar apps (e.g., Google Calendar, Outlook)
+MoSCoW Clairification Analysis are Must Have User registration and login functionality, Create/Add new tasks, Edit and delete existing tasks, Mark tasks as complete/incomplete, Priority levels, Screen Reader support, Touch friendly Interface, Fast Loading Times. Should Have Categorise tasks (e.g., Work, Personal), Set due date, Automated Deployment and Performance monitoring. Could Have Dark/light theme toggle, Search Tasks. Won’t Have Sharing tasks with other users (out of current scope), Integration with external calendar apps (e.g., Google Calendar, Outlook)
 
 ## 🛠️ **Technologies Used**
 
