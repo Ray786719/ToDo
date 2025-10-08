@@ -55,7 +55,66 @@ upcoming_todos = user_todos.filter(due_date__gt=tomorrow)
 # Efficient lookups with get_object_or_404
 todo = get_object_or_404(Todo, id=todo_id, user=request.user)
 ```
+## Agile Methodologies
 
+This project was planned and developed using Agile principles, following an iterative and incremental approach. 
+
+**Project Planning**
+
+A GitHub Project Board was set up using a Kanban workflow with three columns: To Do, In Progress, and Done.
+
+Each task was created as a GitHub Issue, linked to a User Story.
+
+MoSCoW prioritisation was applied to clearly define what features were:
+
+**Must Have** – essential for project success.
+
+**Should Have** – important but not critical.
+
+**Could Have** – desirable if time permits.
+
+**Won’t Have** – excluded from this release.
+
+**Epics and User Stories Epic 1: User Management**
+
+As a new user, I want to register an account so I can access the app.
+
+As a returning user, I want to log in securely so that I can use my to-do list.
+
+**Epic 2: Task Management**
+
+As a user, I want to create tasks so I can track my work
+As a user, I want to edit/delete tasks so I can manage my workflow
+As a user, I want to mark tasks complete so I can track progress
+As a user, I want to set due dates so I can prioritize urgent tasks
+As a user, I want priority levels so I can organize by importance
+As a user, I want categories so I can group related tasks
+
+**Epic 3: User Experience & Accessibility**
+
+As a visually impaired user, I want screen reader support so I can use the app
+As a mobile user, I want touch-friendly interface so I can manage tasks on-the-go
+As a user, I want dark/light theme toggle so I can customize my experience
+As a user, I want to search tasks so I can quickly find specific items
+As a user, I want to filter by category/priority so I can focus on relevant tasks
+
+**Epic 4: Performance & Deployment**
+
+As a user, I want fast loading times so I can be productive
+As a developer, I want automated deployment so releases are reliable
+As a stakeholder, I want performance monitoring so we can maintain quality
+
+### **Evidence of Agile in Action**
+
+GitHub Issues were created for each user story and labelled using MoSCoW.
+
+The Kanban board tracked progress and demonstrated how tasks moved from To Do → In Progress → Done.
+
+Screenshots of the board at different stages of development are included below as evidence:
+
+📸 [Placeholder: Insert board screenshots here]
+
+MoSCoW Prioritisation Priority Feature Must Have User registration and login functionality, Add new tasks to the to-do list Edit and delete existing tasks, Mark tasks as complete/incomplete Responsive design for desktop, tablet, and mobile. Should Have Categorise tasks (e.g., Work, Personal), Display completed tasks separately from pending ones. Could Have Add due dates and reminders for tasks Search or filter tasks. Won’t Have Sharing tasks with other users (out of current scope), Integration with external calendar apps (e.g., Google Calendar, Outlook)
 
 ## 🛠️ **Technologies Used**
 
