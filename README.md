@@ -7,7 +7,7 @@ Used Semantic HTML. No Web Content Accessibility Guideline (WCAG) errors found. 
 
 ## Wireframes
 
-he application design was planned using **Balsamiq Wireframes** following a mobile-first approach to ensure optimal user experience across all devices:
+The application design was planned using **Balsamiq Wireframes** following a mobile-first approach to ensure optimal user experience across all devices:
 ![Home Page Desktop Wireframe](docs/wireframes/Home_Page_Desktop.png)
 ![Home Page Tablet Wireframe](docs/wireframes/Home_Page_Tablet.png)
 ![Home Page Android Wireframe](docs/wireframes/Home_Page_Android.png)
