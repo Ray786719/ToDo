@@ -12,6 +12,9 @@ he application design was planned using **Balsamiq Wireframes** following a mobi
 ![Home Page Tablet Wireframe](docs/wireframes/Home_Page_Tablet.png)
 ![Home Page Android Wireframe](docs/wireframes/Home_Page_Android.png)
 
+## Mockups
+![Mockup](docs/wireframes/Mockup.png)
+
 ## 🌟 **Live Demo**
 
 **🔗 [View Live Application](https://code-todo-0cd7c0299313.herokuapp.com/)**
@@ -112,9 +115,94 @@ The Kanban board tracked progress and demonstrated how tasks moved from To Do �
 
 Screenshots of the board at different stages of development are included below as evidence:
 
-📸 [Placeholder: Insert board screenshots here]
+![](docs/Crud/Agile_Methodology.png)
 
-MoSCoW Clairification Analysis are Must Have User registration and login functionality, Create/Add new tasks, Edit and delete existing tasks, Mark tasks as complete/incomplete, Priority levels, Screen Reader support, Touch friendly Interface, Fast Loading Times. Should Have Categorise tasks (e.g., Work, Personal), Set due date, Automated Deployment and Performance monitoring. Could Have Dark/light theme toggle, Search Tasks. Won’t Have Sharing tasks with other users (out of current scope), Integration with external calendar apps (e.g., Google Calendar, Outlook)
+In the project MoSCoW Prioritisation are Must Have User registration and login functionality, Create/Add new tasks, Edit and delete existing tasks, Mark tasks as complete/incomplete, Priority levels, Screen Reader support, Touch friendly Interface, Fast Loading Times. Should Have Categorise tasks (e.g., Work, Personal), Set due date, Automated Deployment and Performance monitoring. Could Have Dark/light theme toggle, Search Tasks. Won’t Have Sharing tasks with other users (out of current scope), Integration with external calendar apps (e.g., Google Calendar, Outlook)
+
+## Code Quality
+
+All files are named based on the function that file performs. If else, while, for loops are used for conditional scenarios. Relevant comment statements are included whereever needed. 
+PEP8 guidelines and indentation has followed. 
+
+## Documentation
+
+UX Design complied with. It is easier for a user to have Menu bar on left with a scroll bar to navigate within the app. Dark and Light mode for better visual experience. Bold fonts are used for better readeability. 
+As previously mentioned in Front End Design, relevant Wireframes and mockup is in the Frond End Desgin. 
+
+##  Database Development
+
+Data base and Tables are created in Djanago as ERD(Class diagram) added below.
+picture should be here
+
+##  CRUD Functionality
+
+Create - Used whilst registering a new user and creating a new task. 
+Remove - Used to delete it task.
+Update - Used to edit user, edit task, complete a task, change password.
+
+##  User Notifications
+
+Notification are displayed when 
+1. When user logged in 
+2. When user logged out
+3. When new task created, completed, updated, status changed, deleted
+4. Before deleting a task.
+
+## Forms and Validation
+
+Forms and Validation used whilst registering a user, logging in and changing password (includes capital letter, numerics and special characters in password).
+
+##  Role-Based Login and Registration
+
+We have two user roles, Admin and user. Admin can view, manage users and data in the data base also use the webapp. Whereas user can only use the webapp as shown below
+![ Role-Based Login and Registration](<docs/Crud/Role_based _logins.png>)
+
+## Reflect Login State
+
+Reflect login has done using drop down button on top right corner of the screen which shows the current logged in user. 
+![Login state](docs/Crud/login.PNG)
+
+## Access Control
+
+When a normal user logging in, we are not letting them access to admin user data. 
+
+##  Python Test Procedures
+
+# Create New Task
+
+Log in (pass) > Click on Add new task(pass) > Add Task name, Due Date, Due Time, Priority Level, Cateogary (pass) > Add Task button (pass).
+Tasks finish when followed above steps. If any of them failed, create new task operation would not be completed.  
+
+## JavaScript Test Procedures
+1. Theme Toggle
+Switch between dark/light themes
+Save preference in localStorage
+2. Real-time Search
+Filter tasks as user types
+No page reload required
+3. Task Completion
+Mark tasks complete/incomplete instantly
+AJAX requests to update database
+4. Form Validation
+Client-side input validation
+Error messages before submission
+5. Mobile Touch Interface
+Touch-friendly interactions
+Swipe gestures for task actions
+6. Dynamic Filtering
+Show/hide completed tasks
+Filter by priority or category
+7. User Feedback
+Toast notifications
+Success/error messages
+
+## Testing Documentation
+
+test cases, expected outcomes, and actual results
+
+test case: 
+
+
 
 ## 🛠️ **Technologies Used**
 
