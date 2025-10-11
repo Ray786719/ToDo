@@ -288,6 +288,17 @@ Once hovering over the task inside the upcoming section, the trash icon will app
 - **Deployment**: Heroku with WhiteNoise static file serving
 - **Security**: CSRF protection, XSS filtering, secure headers
 
+## 🔧 **Git Version Control**
+
+Professional version control implementation with **Meaningful commits** documenting complete development process:
+
+- ✅ **Comprehensive commit history** from initial deployment-ready setup to final documentation
+- ✅ **Descriptive commit messages** clearly documenting each feature addition and improvement
+- ✅ **Incremental development** showing progressive implementation of authentication, CRUD operations, accessibility, and UI enhancements
+- ✅ **Professional Git workflow** with regular commits reflecting systematic development approach
+
+**Repository**: [View complete commit history on GitHub](https://github.com/Ray786719/ToDo)
+
 ## ✨ **Key Features**
 
 ### **Task Management**
