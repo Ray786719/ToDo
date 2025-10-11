@@ -168,7 +168,9 @@ Log in (pass) > Click on Add new task(pass) > Add Task name, Due Date, Due Time,
 Tasks finish when followed above steps. If any of them failed, create new task operation would not be completed.  
 
 ## JavaScript Test Procedures
+
 1. Theme Toggle
+
 Switch between dark/light themes
 Save preference in localStorage
 2. Real-time Search
@@ -194,27 +196,27 @@ Success/error messages
 
 Test cases, Expected outcomes, and Actual results
 
-**Testcase1: Change Password**
+**Test Case 1: Change Password**
 
 **Expected Outcome**
 
-To change the password for security reasons. 
+To change the password for security reasons.
 
 **Actual Result**
 
-If a valid old password given and New password confirmed correctly in the confirmation new password section. The notification will popped up in a home page, password has updated correctly!.
+If a valid old password is given and the new password is confirmed correctly in the confirmation new password section, the notification will pop up on the home page, confirming that the password has been updated correctly.
 
-**Testcase2: Login Successful**
+**Test Case 2: Login Successful**
 
 **Expected Outcome**
 
-To get into the application Home Page, so I can be able to do the tasks inside the application. 
+To get into the application Home Page, so I can be able to do the tasks inside the application.
 
 **Actual Result**
 
-When valid username and password given, Welcome message will be popped up.
+When a valid username and password are given, a welcome message will pop up.
 
-**Testcase3: Logged Out**
+**Test Case 3: Logged Out**
 
 **Expected Outcome**
 
@@ -222,61 +224,59 @@ To log out from the application.
 
 **Actual Result**
 
-Once clicked on the log out. The message will appear,
-"Good Bye, username! You have been logged out". 
+Once clicked on log out, the message will appear:
+"Good Bye, username! You have been logged out".
 
-**Testcase4: Dark/Light Mode**
-
-**Expected Outcome**
-
-To change the screen colour to Dark or Light mode. 
-
-**Actual Result**
-
-If clicked on the Toggle, the light colour screen will be changed to Dark mode or Dark colour screen will be 
-changed to Light mode.
-
-**Testcase5: Add New Task**
+**Test Case 4: Dark/Light Mode**
 
 **Expected Outcome**
 
-To add a task in the main screen, so the user know what date and time these are due for.
+To change the screen color to Dark or Light mode.
 
 **Actual Result**
 
-When executed successfuly, the notiifcation message will appear advising the task added succesfully. 
-It will also be added in the Upcoming section of the application. 
+If clicked on the toggle, the light color screen will be changed to Dark mode or the dark color screen will be changed to Light mode.
 
-**Testcase6: Completed**
+**Test Case 5: Add New Task**
 
 **Expected Outcome**
 
-To transfer task from Upcoming section to Completed section. 
+To add a task on the main screen, so the user knows what date and time these are due for.
 
 **Actual Result**
 
-Once checked the box before the task in the Upcoming section. This will be added to the Completed section. 
+When executed successfully, the notification message will appear advising that the task has been added successfully. It will also be added to the Upcoming section of the application.
 
-**Testcase7: Edit Task**
+**Test Case 6: Completed**
 
 **Expected Outcome**
 
-To edit the task. i.e. To change the description of the task, Due Date and Time, Priority Level and Cateogary. 
+To transfer task from Upcoming section to Completed section.
 
 **Actual Result**
 
-Once clicked on the pencil icon followed by the editing and then clikcing on Update Task button, the message will be popped up on Home Page 
-screen apprising the task has been updated successfuly. 
+Once the checkbox before the task in the Upcoming section is checked, this will be added to the Completed section.
 
-**Testcase8: Deletion**
+**Test Case 7: Edit Task**
 
 **Expected Outcome**
 
-To delete the task as they no longer required. 
+To edit the task, i.e., to change the description of the task, Due Date and Time, Priority Level, and Category.
 
 **Actual Result**
 
-Once hoover on the task inside the upcoming section, the trash icon will appear. Once clicked on the Trash, the message will be appeared inquiring, "Are you sure you want to delete this task?". When clicked ok, the message will appeared advising the project name " " has successfuly deleted. 
+Once clicked on the pencil icon followed by editing and then clicking on the Update Task button, the message will pop up on the Home Page screen advising that the task has been updated successfully.
+
+**Test Case 8: Deletion**
+
+**Expected Outcome**
+
+To delete the task as it is no longer required.
+
+**Actual Result**
+
+Once hovering over the task inside the upcoming section, the trash icon will appear. Once clicked on the trash icon, the message will appear inquiring, "Are you sure you want to delete this task?". When clicked OK, the message will appear advising that the project has been successfully deleted.
+
 
 
 ## 🛠️ **Technologies Used**
