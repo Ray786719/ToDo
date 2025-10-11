@@ -30,34 +30,6 @@ The application design was planned using **Balsamiq Wireframes** following a mob
 - **🟢 Best Practices: 100/100** - Enterprise-grade security
 - **🟢 SEO: 90/100** - Search engine optimized
 
-##  Database Development
-
-Data base and Tables are created in Djanago as ERD(Class diagram) added below.
-
-### **Entity Relationship Diagram (ERD)**
-![Database ERD](docs/database/todo_app_erd.png)
-
-### **Database Features**
-
-- ✅ **User Management**: Complete user profile with authentication
-- ✅ **Task Management**: Full task lifecycle with metadata
-- ✅ **Relationships**: One-to-Many (User → Tasks) with Foreign Key
-- ✅ **Data Integrity**: Primary keys, foreign keys, and field constraints
-- ✅ **Timestamps**: Automatic created_at and updated_at tracking
-
-### **ORM Usage Examples**
-
-```python
-# Secure user-filtered queries
-user_todos = Todo.objects.filter(user=request.user)
-
-# Complex filtering with date operations  
-overdue_todos = user_todos.filter(due_date__lt=today, completed=False)
-upcoming_todos = user_todos.filter(due_date__gt=tomorrow)
-
-# Efficient lookups with get_object_or_404
-todo = get_object_or_404(Todo, id=todo_id, user=request.user)
-```
 ## Agile Methodologies
 
 This project was planned and developed using Agile principles, following an iterative and incremental approach. 
@@ -192,6 +164,78 @@ Filter by priority or category
 Toast notifications
 Success/error messages
 
+## 🛠️ **Technologies Used**
+
+- **Backend**: Django 4.2.24, Python 3.12
+- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
+- **Database**: SQLite (development), PostgreSQL (production)
+- **ORM**: Django ORM with secure, efficient queries
+- **Deployment**: Heroku with WhiteNoise static file serving
+- **Security**: CSRF protection, XSS filtering, secure headers
+
+## 🔧 **Git Version Control**
+
+Professional version control implementation with **Meaningful commits** documenting complete development process:
+
+- ✅ **Comprehensive commit history** from initial deployment-ready setup to final documentation
+- ✅ **Descriptive commit messages** clearly documenting each feature addition and improvement
+- ✅ **Incremental development** showing progressive implementation of authentication, CRUD operations, accessibility, and UI enhancements
+- ✅ **Professional Git workflow** with regular commits reflecting systematic development approach
+
+**Repository**: [View complete commit history on GitHub](https://github.com/Ray786719/ToDo)
+
+## 🔒 **Security & Environment Variables**
+
+### **Environment Variable Management**
+Professional security implementation with comprehensive environment variable usage:
+
+- ✅ **No hardcoded secrets** - All sensitive data managed via environment variables
+- ✅ **Local development** - `.env` file with python-decouple for secure local configuration
+- ✅ **Production security** - Heroku config vars for SECRET_KEY, DEBUG, and database settings
+- ✅ **Git protection** - `.env` files properly ignored, preventing accidental commits
+- ✅ **Security best practices** - Django secret key, debug settings, and database URLs secured
+
+### **Implementation Details**
+```python
+# settings.py - Secure environment variable usage
+from decouple import config
+
+SECRET_KEY = config('SECRET_KEY', default='django-insecure-dev-key-only')
+DEBUG = config('DEBUG', default='True', cast=bool)
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost', cast=lambda v: [s.strip() for s in v.split(',')])
+```
+
+**Repository Security**: No passwords, API keys, or sensitive information committed to version control.
+
+##  Database Development
+
+Data base and Tables are created in Djanago as ERD(Class diagram) added below.
+
+### **Entity Relationship Diagram (ERD)**
+![Database ERD](docs/database/todo_app_erd.png)
+
+### **Database Features**
+
+- ✅ **User Management**: Complete user profile with authentication
+- ✅ **Task Management**: Full task lifecycle with metadata
+- ✅ **Relationships**: One-to-Many (User → Tasks) with Foreign Key
+- ✅ **Data Integrity**: Primary keys, foreign keys, and field constraints
+- ✅ **Timestamps**: Automatic created_at and updated_at tracking
+
+### **ORM Usage Examples**
+
+```python
+# Secure user-filtered queries
+user_todos = Todo.objects.filter(user=request.user)
+
+# Complex filtering with date operations  
+overdue_todos = user_todos.filter(due_date__lt=today, completed=False)
+upcoming_todos = user_todos.filter(due_date__gt=tomorrow)
+
+# Efficient lookups with get_object_or_404
+todo = get_object_or_404(Todo, id=todo_id, user=request.user)
+```
+
 ## Testing Documentation
 
 Test cases, Expected outcomes, and Actual results
@@ -277,27 +321,31 @@ To delete the task as it is no longer required.
 
 Once hovering over the task inside the upcoming section, the trash icon will appear. Once clicked on the trash icon, the message will appear inquiring, "Are you sure you want to delete this task?". When clicked OK, the message will appear advising that the project has been successfully deleted.
 
+## 🚀 **Deployment & Verification**
 
+### **Production Deployment**
+- **Platform**: Heroku Cloud Platform
+- **Live URL**: https://code-todo-0cd7c0299313.herokuapp.com/
+- **Status**: ✅ Successfully deployed and fully functional
 
-## 🛠️ **Technologies Used**
+### **Deployment Verification**
 
-- **Backend**: Django 4.2.24, Python 3.12
-- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
-- **Database**: SQLite (development), PostgreSQL (production)
-- **ORM**: Django ORM with secure, efficient queries
-- **Deployment**: Heroku with WhiteNoise static file serving
-- **Security**: CSRF protection, XSS filtering, secure headers
+**✅ Functionality Match Confirmed:**
+- Local development and production versions maintain identical functionality
+- All CRUD operations work seamlessly across both environments
+- User authentication, theme toggle, and responsive design verified
 
-## 🔧 **Git Version Control**
+### **Responsive Design Verification**
+**✅ Cross-Device Compatibility:**
+- Tested and verified on iPhone SE, tablets, and desktop views
+- All features accessible and usable across different screen sizes
+- Professional mobile experience with touch-friendly interface
 
-Professional version control implementation with **Meaningful commits** documenting complete development process:
-
-- ✅ **Comprehensive commit history** from initial deployment-ready setup to final documentation
-- ✅ **Descriptive commit messages** clearly documenting each feature addition and improvement
-- ✅ **Incremental development** showing progressive implementation of authentication, CRUD operations, accessibility, and UI enhancements
-- ✅ **Professional Git workflow** with regular commits reflecting systematic development approach
-
-**Repository**: [View complete commit history on GitHub](https://github.com/Ray786719/ToDo)
+### **Environment Configuration**
+- ✅ **Database**: PostgreSQL (production) / SQLite (development)
+- ✅ **Static Files**: WhiteNoise for efficient static file serving
+- ✅ **Security**: Environment variables properly configured via Heroku Config Vars
+- ✅ **Performance**: Optimized for production with proper caching and compression
 
 ## ✨ **Key Features**
 
