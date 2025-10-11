@@ -30,20 +30,20 @@ The application design was planned using **Balsamiq Wireframes** following a mob
 - **🟢 Best Practices: 100/100** - Enterprise-grade security
 - **🟢 SEO: 90/100** - Search engine optimized
 
-## 🗄️ **Database**
+##  Database Development
 
-Builded a database backed Django web application to manage data records. Designed a database structure with custom model which fits the Project requirement. 
-Applied correct implementation of Django models with appropriate fields, relationships, and constraints.
-Used of Django’s ORM for data management to ensure efficient and secure database operations.
+Data base and Tables are created in Djanago as ERD(Class diagram) added below.
 
-### **Features**
+### **Entity Relationship Diagram (ERD)**
+![Database ERD](docs/database/todo_app_erd.png)
 
-- ✅ **Multi-database support**: SQLite (development) + PostgreSQL (production)
-- ✅ **Secure ORM operations**: All queries filtered by authenticated user
-- ✅ **Proper relationships**: ForeignKey with CASCADE deletion and related_name
-- ✅ **Data integrity**: Field constraints, choices, and validation
-- ✅ **Efficient queries**: Optimized with proper filtering and indexing
-- ✅ **Migration management**: 4 migrations tracking model evolution
+### **Database Features**
+
+- ✅ **User Management**: Complete user profile with authentication
+- ✅ **Task Management**: Full task lifecycle with metadata
+- ✅ **Relationships**: One-to-Many (User → Tasks) with Foreign Key
+- ✅ **Data Integrity**: Primary keys, foreign keys, and field constraints
+- ✅ **Timestamps**: Automatic created_at and updated_at tracking
 
 ### **ORM Usage Examples**
 
@@ -100,7 +100,6 @@ As a mobile user, I want touch-friendly interface so I can manage tasks on-the-g
 As a user, I want dark/light theme toggle so I can customize my experience
 As a user, I want to search tasks so I can quickly find specific items
 
-
 **Epic 4: Performance & Deployment**
 
 As a user, I want fast loading times so I can be productive
@@ -115,7 +114,7 @@ The Kanban board tracked progress and demonstrated how tasks moved from To Do �
 
 Screenshots of the board at different stages of development are included below as evidence:
 
-![](docs/Crud/Agile_Methodology.png)
+![](docs/images/Agile_Methodology.png)
 
 In the project MoSCoW Prioritisation are Must Have User registration and login functionality, Create/Add new tasks, Edit and delete existing tasks, Mark tasks as complete/incomplete, Priority levels, Screen Reader support, Touch friendly Interface, Fast Loading Times. Should Have Categorise tasks (e.g., Work, Personal), Set due date, Automated Deployment and Performance monitoring. Could Have Dark/light theme toggle, Search Tasks. Won’t Have Sharing tasks with other users (out of current scope), Integration with external calendar apps (e.g., Google Calendar, Outlook)
 
@@ -128,11 +127,6 @@ PEP8 guidelines and indentation has followed.
 
 UX Design complied with. It is easier for a user to have Menu bar on left with a scroll bar to navigate within the app. Dark and Light mode for better visual experience. Bold fonts are used for better readeability. 
 As previously mentioned in Front End Design, relevant Wireframes and mockup is in the Frond End Desgin. 
-
-##  Database Development
-
-Data base and Tables are created in Djanago as ERD(Class diagram) added below.
-picture should be here
 
 ##  CRUD Functionality
 
@@ -155,12 +149,12 @@ Forms and Validation used whilst registering a user, logging in and changing pas
 ##  Role-Based Login and Registration
 
 We have two user roles, Admin and user. Admin can view, manage users and data in the data base also use the webapp. Whereas user can only use the webapp as shown below
-![ Role-Based Login and Registration](<docs/Crud/Role_based _logins.png>)
+![ Role-Based Login and Registration](<docs/images/Role_based _logins.png>)
 
 ## Reflect Login State
 
 Reflect login has done using drop down button on top right corner of the screen which shows the current logged in user. 
-![Login state](docs/Crud/login.PNG)
+![Login state](docs/images/login.PNG)
 
 ## Access Control
 
@@ -198,10 +192,91 @@ Success/error messages
 
 ## Testing Documentation
 
-test cases, expected outcomes, and actual results
+Test cases, Expected outcomes, and Actual results
 
-test case: 
+**Testcase1: Change Password**
 
+**Expected Outcome**
+
+To change the password for security reasons. 
+
+**Actual Result**
+
+If a valid old password given and New password confirmed correctly in the confirmation new password section. The notification will popped up in a home page, password has updated correctly!.
+
+**Testcase2: Login Successful**
+
+**Expected Outcome**
+
+To get into the application Home Page, so I can be able to do the tasks inside the application. 
+
+**Actual Result**
+
+When valid username and password given, Welcome message will be popped up.
+
+**Testcase3: Logged Out**
+
+**Expected Outcome**
+
+To log out from the application.
+
+**Actual Result**
+
+Once clicked on the log out. The message will appear,
+"Good Bye, username! You have been logged out". 
+
+**Testcase4: Dark/Light Mode**
+
+**Expected Outcome**
+
+To change the screen colour to Dark or Light mode. 
+
+**Actual Result**
+
+If clicked on the Toggle, the light colour screen will be changed to Dark mode or Dark colour screen will be 
+changed to Light mode.
+
+**Testcase5: Add New Task**
+
+**Expected Outcome**
+
+To add a task in the main screen, so the user know what date and time these are due for.
+
+**Actual Result**
+
+When executed successfuly, the notiifcation message will appear advising the task added succesfully. 
+It will also be added in the Upcoming section of the application. 
+
+**Testcase6: Completed**
+
+**Expected Outcome**
+
+To transfer task from Upcoming section to Completed section. 
+
+**Actual Result**
+
+Once checked the box before the task in the Upcoming section. This will be added to the Completed section. 
+
+**Testcase7: Edit Task**
+
+**Expected Outcome**
+
+To edit the task. i.e. To change the description of the task, Due Date and Time, Priority Level and Cateogary. 
+
+**Actual Result**
+
+Once clicked on the pencil icon followed by the editing and then clikcing on Update Task button, the message will be popped up on Home Page 
+screen apprising the task has been updated successfuly. 
+
+**Testcase8: Deletion**
+
+**Expected Outcome**
+
+To delete the task as they no longer required. 
+
+**Actual Result**
+
+Once hoover on the task inside the upcoming section, the trash icon will appear. Once clicked on the Trash, the message will be appeared inquiring, "Are you sure you want to delete this task?". When clicked ok, the message will appeared advising the project name " " has successfuly deleted. 
 
 
 ## 🛠️ **Technologies Used**
