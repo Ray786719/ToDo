@@ -38,6 +38,9 @@ The application design was planned using **Balsamiq Wireframes** following a mob
 
 **🔗 [View Live Application](https://code-todo-0cd7c0299313.herokuapp.com/)**
 
+UserName : test
+Password: Test@0123
+
 ## 🏆 **Performance & Quality Metrics**
 
 **Tested with Google PageSpeed Insights** (pagespeed.web.dev) - October 7, 2025:
@@ -118,6 +121,7 @@ PEP8 guidelines and indentation have been followed.
 Images attached below dispay Code Quality and Validation
 ![CI Python Linter](<docs/images/Screenshot 2025-10-13 15.18.09.png>) 
 ![JS Hint Validator](<docs/images/Screenshot 2025-10-13 15.19.06.png>) 
+False positives due to Django template syntax mixing with JavaScript
 ![CSS Validator](<docs/images/Screenshot 2025-10-13 15.21.16.png>) 
 ![HTML Validator](<docs/images/Screenshot 2025-10-13 15.21.51.png>)
 
